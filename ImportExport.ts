@@ -1,4 +1,4 @@
-public imporClick(model: Workflow) {
+public importClick(model: Workflow) {
                 var jqNode;
                 jqNode = $($("#import-popup").html());
 
