@@ -19,7 +19,7 @@ public importClick(model: Workflow) {
             }
 
             public exportClick(model: Workflow) {
-                (<any>jardogs).util.prompt("Exporting will require saving #####. Would you like to save & export?", ["Yes", "Cancel"])
+                (<any>####).util.prompt("Exporting will require saving #####. Would you like to save & export?", ["Yes", "Cancel"])
                     .done((result) => {
                     
                         if (result === "Yes") {
@@ -28,8 +28,6 @@ public importClick(model: Workflow) {
                                 var jsonFile = createJsonFile(model);
                                 downloadObjectAsJson(jsonFile, "#####");
                             } catch(ex) {
-                                (<any>jardogs).api.log(ex.message, "Exporting ##### failed.");
-                                (<any>jardogs).util.alert("Exporting ##### failed.");
                             }
                         
                         };
@@ -40,7 +38,7 @@ public importClick(model: Workflow) {
                             var jsonFilterList = [];
 
                             $.each(filterList, function (key, value) {
-                                try {
+                                try { //below are the specific elements added to the json file. This Should be edited as needed
                                     var newFilter = new FilterObject();
                                     newFilter.FilterName = value.name();
                                     newFilter.ComparedTo = value.comparedTo();
@@ -49,8 +47,6 @@ public importClick(model: Workflow) {
                                     newFilter.Property = value.propertyName();
                                     jsonFilterList.push(newFilter);
                                 } catch (ex) {
-                                    (<any>jardogs).api.log(ex.message, "Error occured while processing #####.");
-                                    (<any>jardogs).util.alert("Error occured while processing #####.");
                                 }
                             
                             });
@@ -68,6 +64,7 @@ public importClick(model: Workflow) {
                         }
 
                         function downloadObjectAsJson(dataStr, exportName) {
+                          //Downloads to the default browser download folder with the name defined as 'download'+exportName
                             var downloadAnchorNode = document.createElement('a');
                             downloadAnchorNode.setAttribute("href", dataStr);
                             downloadAnchorNode.setAttribute("download", exportName + ".json");
@@ -76,8 +73,6 @@ public importClick(model: Workflow) {
                         }
                     })
                     .fail(function (message) {
-                        (<any>jardogs).api.log(message, "Saving ##### failed.");
-                        (<any>jardogs).util.alert("Error saving #####. Please try again later.");
                     });     
 
             }
